@@ -16,7 +16,6 @@ int main(void)
 	}
 
 	char uper = 'A';
-
 	while (uper <= 'Z')
 	{
 		putchar(uper);
