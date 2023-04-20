@@ -1,31 +1,92 @@
 #include "variadic_functions.h"
-#include <stdio.h>
+
 /**
- * print_all - function that print all
- * @format: first value
- * @char: second value
- *
+ * integer_print - print integers.
+*@args: the list of parameters
+*Return:no return a void func.
+*/
+void integer_print(va_list args)
+{
+	printf("%d", va_arg(args, int));
+}
+
+/**
+ * char_print - print chars.
+*@args: the list of parameters
+* Return:no return a void func.
  */
+
+void char_print(va_list args)
+{
+	printf("%c", va_arg(args, int));
+}
+/**
+ * string_print - print strings
+ * @args: the parameter
+* Return:no return a void func.
+*/
+
+void string_print(va_list args)
+{
+	char *s;
+
+	s = va_arg(args, char *);
+	if (s == NULL)
+		s = "(nil)";
+	printf("%s", s);
+}
+
+/**
+ * float_print - prints floats
+*@args: the list of parameters
+* Return:no return a void func.
+ */
+
+void float_print(va_list args)
+{
+	printf("%f", va_arg(args, double));
+}
+/**
+ * print_all - print anything.
+(* a blank line
+*@format: the paramaters
+* Return: this function no return
+*/
+
 
 void print_all(const char * const format, ...)
 {
 	va_list args;
-		typeprint_t types[] = {
-		{"c", "%c", char},
-		{"i", "%i", int},
-		{"f", "%f", float},
-		{"s", "%s", char},
+	int x, j;
+	char *separator;
+	args_t arguments[] = {
+		{"c", char_print},
+		{"i", integer_print},
+		{"f", float_print},
+		{"s", string_print},
 		{NULL, NULL}
 	};
-	int x = 0, j = 0;
 
 	va_start(args, format);
-	while (x < 4)
+	x = 0;
+	separator = "";
+
+	while (format != NULL && *(format + x) != '\0')
 	{
-		if (types[x].type_p == format[j])
-			printf(char *(types[x].f), va_arg(args, types[x].type_c)
+		j = 0;
+		while (j < 4)
+		{
+			if (*(format + x) == *(arguments[j]).format)
+			{
+				printf("%s", separator);
+				arguments[j].function(args);
+				separator = ", ";
+
+			}
+			j++;
+		}
 		x++;
 	}
-	va_end(args);
 	printf("\n");
+	va_end(args);
 }
