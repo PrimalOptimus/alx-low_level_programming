@@ -1,58 +1,63 @@
 #include "variadic_functions.h"
+#include <stdio.h>
 
 /**
- * integer_print - print integers.
-*@args: the list of parameters
-*Return:no return a void func.
-*/
-void integer_print(va_list args)
-{
-	printf("%d", va_arg(args, int));
-}
-
-/**
- * char_print - print chars.
-*@args: the list of parameters
-* Return:no return a void func.
+ * print_char - function that prints the char type
+ * @arguments: arguments from va_list
+ *
  */
 
-void char_print(va_list args)
+void print_char(va_list arguments)
 {
-	printf("%c", va_arg(args, int));
-}
-/**
- * string_print - print strings
- * @args: the parameter
-* Return:no return a void func.
-*/
-
-void string_print(va_list args)
-{
-	char *s;
-
-	s = va_arg(args, char *);
-	if (s == NULL)
-		s = "(nil)";
-	printf("%s", s);
+	printf("%c", va_arg(arguments, int));
 }
 
 /**
- * float_print - prints floats
-*@args: the list of parameters
-* Return:no return a void func.
+ * print_int - function that prints the integer type
+ * @arguments: arguments from va_list
+ *
  */
 
-void float_print(va_list args)
+void print_int(va_list arguments)
 {
-	printf("%f", va_arg(args, double));
+	printf("%d", va_arg(arguments, int));
 }
-/**
- * print_all - print anything.
-(* a blank line
-*@format: the paramaters
-* Return: this function no return
-*/
 
+/**
+ * print_float - function that prints the float type
+ * @arguments: arguments from va_list
+ *
+ */
+
+void print_float(va_list arguments)
+{
+	printf("%f", va_arg(arguments, double));
+}
+
+/**
+ * print_string - function that prints the string type
+ * @arguments: arguments from va_list
+ *
+ */
+
+void print_string(va_list arguments)
+{
+	char *p;
+
+	p = (va_arg(arguments, char *));
+	if (p == NULL)
+	{
+		printf("(nil)");
+		return;
+	}
+	printf("%s", p);
+}
+
+/**
+ * print_all - function that prints all type the arguments
+ * @format: first value
+ *
+ */
 
 void print_all(const char * const format, ...)
 {
