@@ -56,37 +56,33 @@ void float_print(va_list args)
 
 void print_all(const char * const format, ...)
 {
-	va_list args;
-	int x, j;
-	char *separator;
-	args_t arguments[] = {
-		{"c", char_print},
-		{"i", integer_print},
-		{"f", float_print},
-		{"s", string_print},
+	va_list arguments;
+	typeprint_t types[] = {
+		{"c", print_char},
+		{"i", print_int},
+		{"f", print_float},
+		{"s", print_string},
 		{NULL, NULL}
 	};
+	int i = 0, j = 0, a = 0;
 
-	va_start(args, format);
-	x = 0;
-	separator = "";
-
-	while (format != NULL && *(format + x) != '\0')
+	va_start(arguments, format);
+	while (format && format[j])
 	{
-		j = 0;
-		while (j < 4)
+		printf(a == 1 ? ", " : "");
+		a = 0;
+		while (types[i].type_p)
 		{
-			if (*(format + x) == *(arguments[j]).format)
+			if (*(types[i].type_p) == format[j])
 			{
-				printf("%s", separator);
-				arguments[j].function(args);
-				separator = ", ";
-
+			types[i].function(arguments);
+			a = 1;
 			}
-			j++;
+			i++;
 		}
-		x++;
+		i = 0;
+		j++;
 	}
+	va_end(arguments);
 	printf("\n");
-	va_end(args);
 }
