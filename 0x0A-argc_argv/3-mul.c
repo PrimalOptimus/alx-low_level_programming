@@ -12,7 +12,7 @@
 int main(int argc, char *argv[])
 {
 	int multiply = 0;
-	char c[] = "Error 'cant multiply";
+	char c[] = "Error";
 
 	if (argc != 3)
 	{
