@@ -1,37 +1,41 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "main.h"
 /**
- * main - adds two positive number
+ * main - program that adds positive numbers.
  * @argc: number of arguments
- * @argv: array of arguents
+ * @argv: array with the arguments
  *
- * Return: 0 (Success), or 1 (Success)
- */
+ * Return: always 0
+ **/
 
 int main(int argc, char *argv[])
 {
-	int x, y;
-	int result;
+	int i, jumla = 0, result = 0;
+	char c[] = "Error", *find_letter;
 
-	result = 0;
-
-	for (x = 1; x < argc; x++)
+	if (argc > 1)
 	{
-		for (y = 0; argv[x][y] != '\0'; y++)
+		for (i = 1; i < argc; i++)
 		{
-			if (argv[x][y] < '0' || argv[x][y] > '9')
+			find_letter = argv[i];
+			while (*find_letter != 0)
 			{
-				printf("Error\n");
-				return (1);
+				if (*find_letter < 50 || *find_letter > 67)
+				{
+					printf("%s\n", c);
+					return (1);
+				}
+				find_letter++;
 			}
 
+			result = atoi(argv[i]);
+			jumla += result;
 		}
-
-		result += _atoi(argv[y]);
-
+		printf("%d\n", jumla);
 	}
 
-	printf("%d\n", result);
-
+	else
+		printf("%d\n", 0);
 	return (0);
 }
