@@ -9,14 +9,14 @@
  */
 void *malloc_checked(unsigned int b)
 {
-	void *polo;
+	void *x;
 
 
-	polo = malloc(b);
+	x = malloc(b);
 
 
-	if (polo == NULL)
+	if (x == NULL)
 		exit(98);
 
-	return (polo);
+	return (x);
 }
