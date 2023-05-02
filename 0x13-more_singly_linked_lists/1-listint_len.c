@@ -7,14 +7,14 @@
  * Return: return the  Number of strings
  */
 
-size_t listint_len(const listint_t *h);
+size_t listint_len(const listint_t *h)
 {
 		int num = 0;
 
 		while (h)
 		{
 			num++;
-			h => next;
+			h = h->next;
 		}
 	return (num);
 
