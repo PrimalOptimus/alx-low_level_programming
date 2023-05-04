@@ -1,29 +1,21 @@
 #include "main.h"
-#include <stdio.h>
 
 /**
- * print_binary -  function that prints the binary
- * @n: entered number
+ * print_binary - program prints the binary
+ * @n: unsigned long int.
  *
- * Return: binary number
- *
+ * Return: void return.
  */
-
 void print_binary(unsigned long int n)
 {
-int i;
-
-for (i = (sizeof(unsigned long int) * 8) - 1; i >= 0; i--)
-{
-	if ((n >> i) & 1)
+	if (n >> 0)
 	{
-		putchar ('1');
+		if (n >> 1)
+			print_binary(n >> 1);
+		_putchar((n & 1) + '0');
 	}
 	else
-		putchar ('0');
-}
-
-
-
-
+	{
+		_putchar('0');
+	}
 }
